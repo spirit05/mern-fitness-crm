@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 1000 400" >
+<defs>
+  <mask id="LetMask"  > 
+  <rect 
+    x="0" y="0"
+    fill="#black" />
+     <text
+      font-size="200px"
+      font-family="Impact, fantasy"
+      font-weigth="bold"
+      x="150" y="300"
+      fill="white">
+      Oops!
+     </text>
+  </mask>
+</defs>
+ <image 
+   xlink:href="http://www.table4weddings.com/new_site/wp-content/uploads/2014/01/tahoestars1.jpg"
+   width="100%"
+   mask="url(#LetMask)" /> 
+</svg>
