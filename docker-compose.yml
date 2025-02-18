@@ -26,6 +26,19 @@ services:
       - mongodb
     networks:
       - mern-app
+  server:
+    build: ./server
+    restart: always
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./server:/app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    networks:
+      - mern-app
   client:
     build: ./client
     environment:
@@ -37,18 +50,9 @@ services:
     command: npm start
     ports:
       - "3000:3000"
-    networks:
-      - mern-app
-  server:
-    build: ./server
-    environment:
-      CHOKIDAR_USEPOLLING: "true"
-    volumes:
-      - ./server:/app
-    ports:
-      - "5000:5000"
     depends_on:
       - mongodb
+      - server
     networks:
       - mern-app
 networks:

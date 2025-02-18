@@ -5,4 +5,5 @@ COPY . .
 RUN npm install
 RUN npm install -g nodemon
 EXPOSE 5000
-CMD ["nodemon"]
+ENTRYPOINT ["nodemon", "/app/index.js"]
+CMD ["npm", "run", "dev"]

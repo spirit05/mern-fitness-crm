@@ -8,6 +8,7 @@ const authRouter = require("./routes/authRoutes")
 const clientRouter = require("./routes/api/clients/clientsRouter");
 const coachRouter = require("./routes/api/coaches/coachRoutes");
 const exerciseRouter = require("./routes/api/exercises/exercises");
+const User = require("./models/user");
 
 const app = express();
 
@@ -36,6 +37,21 @@ const start = async () => {
             useUnifiedTopology: true
         });
 
+        try {
+            const adminUser = {
+                    fio: "admin",
+                    login: "admin",
+                    password: "admin"
+                };
+
+                await User.create(adminUser);
+                console.log("Admin user was created");
+        } catch (err) {
+            console.log("--- Collection does not exist, creating default user...");
+
+
+        }
+
         app.listen(PORT, () => {
             console.log("Server is running on PORT " + PORT);
         });
@@ -43,5 +59,5 @@ const start = async () => {
         console.error(e);
     }
 }
- 
+
 start();

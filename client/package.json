@@ -18,7 +18,9 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0"
   },
   "scripts": {
     "start": "react-scripts start",

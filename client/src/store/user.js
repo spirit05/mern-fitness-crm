@@ -31,13 +31,16 @@ export const selectLogin = state => state.user.isLogin;
 export const selectUser = state => state.user.data;
 
 export const Login = data => async (dispatch, getState) => {
+    if (!data) return;
+
     if (data) {
         await axios.post('http://localhost:5000/login', {...data})
             .then(res => (dispatch(login(res.data), res)))
             .then(res => localStorage.setItem(storageName, JSON.stringify(res.payload)))
             .catch((e,m) => {
+              console.log(e.response)
                 getState();
-                dispatch(addAlert({type: 'error', text: m || e.response.data}))
+                dispatch(addAlert({type: 'error', text: m ?? e.response.data ?? "LOGIN ERROR!"}))
                 console.error(e,m)
             })
     }

@@ -6,8 +6,8 @@ const router = express.Router();
 let closeTime = 0;
 let countWrongLogin = 0;
 
-router.post("/", 
-            async (req, res) => { 
+router.post("/",
+            async (req, res) => {
                 try {
                     const { login, password } = req.body;
 
@@ -19,7 +19,7 @@ router.post("/",
 
                     if (!isMatch) {
                         ++countWrongLogin;
-                        
+
                         if (countWrongLogin > 3) {
                             if (closeTime === 0) {
                                     setTimeout(() => {
@@ -27,10 +27,10 @@ router.post("/",
                                         closeTime = 0;
                                     }, 360000);
                                     closeTime = Date.now() + 360000;
-                                }                        
+                                }
                             return res.status(400).json(`Превышено количество попыток. Попробуйте снова через ${((closeTime - Date.now()) / 60000).toFixed()} мин.`);
                         }
-                        
+
                         return res.status(400).json("Неверный логин или пароль");
                     }
 
@@ -40,7 +40,7 @@ router.post("/",
                         { userId: user._id },
                         jwt_secret,
                         { expiresIn: "1h" }
-                    ); 
+                    );
 
                     res.json({ token, userId: user._id, fio: user.fio });
                 } catch (e) {
